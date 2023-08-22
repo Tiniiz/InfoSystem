@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-black">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-2 mr-auto">
+            <a class="navbar-brand" href="/">Главная</a>
+            <li class="nav-item">
+                <a  sec:authorize="hasRole('ROLE_ADMIN')" class="nav-link" href="/patient" id="patients">Пациенты</a>
+            </li>
+            <li class="nav-item">
+                <a  sec:authorize="hasRole('ROLE_ADMIN')" class="nav-link" href="/doctor" id="doctors">Врачи</a>
+            </li>
+            <li class="nav-item">
+                <a sec:authorize="hasRole('ROLE_USER')" class="nav-link" href="/user">Личный кабинет</a>
+            </li>
+            <li class="nav-item">
+                <a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="nav-link" href="/author">Об авторе</a>
+            </li>
+
+        </ul>
+
+        <ul class="navbar-nav mr-2 ml-auto">
+            <li>
+                <a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" th:text="${#authentication.name}" class="nav-link active"></a>
+            </li>
+            <li class="nav-item">
+                <a sec:authorize="not hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="nav-link" href="/registration">Регистрация</a>
+            </li>
+            <li class="nav-item">
+                <a sec:authorize="not hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="nav-link" href="/login">Войти</a>
+            </li>
+            <li class="nav-item">
+                <a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="nav-link" href="/logout">Выйти</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<section class="welcome">
+    <blockquote class="blockquote text-center text-black"><h1>Данные о пользователе</h1></blockquote>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card" style="width: 18rem;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Имя</li>
+                    <li class="list-group-item">День Рождения</li>
+                    <li class="list-group-item">Номер медицинского полиса</li>
+                    <li class="list-group-item">Паспорт</li>
+                    <li class="list-group-item">Адрес</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card" style="width: 18rem;">
+                <ul class="list-group list-group-flush" th:each="obj: ${patient}">
+                    <li class="list-group-item" th:text="${obj.name}">отсутствует</li>
+                    <li class="list-group-item" th:text="${obj.birthday}">отсутствует</li>
+                    <li class="list-group-item" th:text="${obj.medPolNum}">отсутствует</li>
+                    <li class="list-group-item" th:text="${obj.passport}">отсутствует</li>
+                    <li class="list-group-item" th:text="${obj.address}">отсутствует</li>
+                    <li class="list-group-item">
+                        <a th:href="@{'/patient/user/edit/'+${obj.id}}">
+                            <button type="button" class="btn btn-info">Редактировать</button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+</body>
+</html>

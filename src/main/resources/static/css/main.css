@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    overflow-x:hidden;
+    opacity: 4;
+}
+
+.navbar-nav.ml-auto {
+    margin-left: auto !important;
+}
+
+.navbar-nav.ml-2 {
+    margin-left: 1rem !important;
+}
+.navbar-nav.mr-2 {
+    margin-right: 1rem !important;
+}
+
+.welcome {
+    background:  rgb(250, 250, 255, 0.5);
+    color: black;
+    border-radius: 1em;
+    padding: 1em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.data {
+    height: 100svh;
+
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.data::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    background: rgb(250, 250, 255, 0.2);
+}
+
+thead {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+
+    background: rgb(250, 250, 255, 0.7);
+}
+
+.date-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.date-list p {
+    color: #FFF;
+}
+h1 {
+    overflow: visible;
+}
+blockquote {
+    overflow: visible;
+}
+h5 {
+    overflow: visible;
+}
+
+body {
+    background-image:  url(https://top-fon.com/uploads/posts/2023-01/1674626644_top-fon-com-p-fon-dlya-prezentatsii-meditsina-pediatriya-196.jpg);
+    background-position: left bottom;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow-y:hidden;
+
+
+}
