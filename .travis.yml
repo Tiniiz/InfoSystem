@@ -1,0 +1,23 @@
+language: java
+
+jdk:
+  - openjdk17
+
+addons:
+  sonarcloud:
+    organization: "tiniiz" 
+    token:
+      secure: "$SONAR_TOKEN"
+
+cache:
+  directories:
+    - "$HOME/.gradle/caches/"
+    - "$HOME/.gradle/wrapper/"
+    - "$HOME/.sonar/cache"
+
+before_script:
+  - chmod +x gradlew
+
+script:
+  - ./gradlew assemble
+  - sonar-scanner
